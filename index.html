@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F-A Coutu_fomo</title>
+<style>
+   body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #e7e6f4;
+      padding: 4px;
+      margin: 0 auto;
+      max-width: 88vw;
+      overflow-x: hidden;
+      
+   /* PRESENTATION PORTRAIT MOBILE */
+
+   @media screen and (orientation: portrait) {
+      /*transform: rotate(90deg);*/
+      transform-origin: center center;
+      width: 100%;
+      overflow-x: hidden;
+      position: relative;
+      }   
+   }
+   
+   /* TEXTES */
+
+   h1 {
+      font-size: clamp(8px, 2.3vw, 24px); /* min 16px, idéal 2.3vw, max 48px */
+      font-weight: normal;
+      text-align: center; /* Centre le texte */
+      color: #433d69;
+      margin: 0;
+      padding: 0;
+      border: none;
+      white-space: nowrap; /* Empêche le retour à la ligne */
+      max-width: 100%; /* Assure que le texte occupe toute la largeur */
+      /*overflow: hidden;*/
+   }
+
+   .titrer-1.visible {
+      visibility: hidden; /* Devient visible une fois l'image chargée */
+   }
+
+   .titre-1 {
+       margin-bottom: 4px;
+   }
+
+   h2 {
+      font-size: 4.3vw;
+      font-weight: bold;
+      font-style: italic;
+      text-align: center; /* Centre le texte */
+      color: #433d69;
+      margin: 0;
+      padding: 0;
+      border: none;
+      white-space: nowrap; /* Empêche le retour à la ligne */
+      max-width: 100%; /* Assure que le texte occupe toute la largeur */
+      /*overflow: hidden;*/
+   }
+
+   .titre-2 {
+       margin-bottom: 40px;
+       margin-top: 40px;
+   }
+   
+   h3 {
+      font-size: 1.2vw;
+      font-style: italic;
+      font-weight: normal;
+      text-align: left;
+      color: #433d69;
+      margin: 0;
+      padding: 0;
+      border: none;
+      max-width: 100%; /* Assure que le texte occupe toute la largeur */
+      /*overflow: hidden;*/
+   }
+
+   .titre-3 {
+       margin-top: 200px;
+       margin-bottom: 40px;
+   }
+   
+   h4 {
+      font-size: 1.2vw;
+      font-style: normal;
+      font-weight: normal;
+      text-align: justify;
+      color: #433d69;
+      margin: 0;
+      padding: 0;
+      border: none;
+      max-width: 100%; /* Assure que le texte occupe toute la largeur */
+      /*overflow: hidden;*/
+   }
+
+   .titre-4 {
+       margin-top: 40px;
+       margin-bottom: 00px;
+   }
+   
+   .titre-1, .titre-2, .titre-3, .titre-4 {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;    
+   }
+   
+   .titre-1.visible, .titre-2.visible, .titre-3.visible, .titre-4.visible {
+    opacity: 1;
+   }
+   
+   /* VIDEO */
+
+   .video-container {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      max-width: 2000px;
+      aspect-ratio: 16 / 9;
+   }
+
+   iframe {
+      width: 100%;
+      height: 100%;
+   }
+   
+   #video {
+        visibility: hidden;
+    }
+
+   .cover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        z-index: 10; /* Devant la vidéo */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+   
+   .cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        cursor: pointer;
+    }
+    
+    /* BOUTONS */
+
+    .btn-video {
+      position: absolute;
+      top: 10px;  /* Déplace le bouton en haut de la vidéo */
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      width: 240px;
+      height: 34px;
+      border: none;
+      border-radius: 3px;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 0.2s, background-color 0.3s;
+      z-index: 20;
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      background-color: transparent;
+      visibility: hidden;  /* Commence caché */
+   }
+
+    .btn-video.visible {
+      visibility: visible; /* Devient visible une fois l'image chargée */
+   }
+
+   .btn-video:hover {
+      opacity: 1;
+   }
+   
+   .btn-section {
+      flex: 1;
+      display: flex;
+      width: 120px;
+      height: 28px;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.8;
+      border-radius: 3px;
+      transition: background-color 0.3s;
+      color: Black;
+   }
+   .btn-section i {
+    font-size: 18px;
+    margin-right: 5px;
+   }   
+   .btn-section.left {
+      margin-right: 28px; /* Ajoute un espace entre les deux sections */
+   }
+   .btn-salle1 .left {
+      background-color: #e7e6f4;
+      color: #433d69;
+   }
+   .btn-salle1 .right {
+      background-color: #433d69;
+      color: #e7e6f4;
+   }
+   .btn-salle2 .left {
+      background-color: #433d69;
+      color: #e7e6f4;
+   }
+   .btn-salle2 .right {
+      background-color: #e7e6f4;
+      color: #433d69;
+   }
+   
+   .btn-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(60px, 13vw, 100px);
+    height: clamp(60px, 13vw, 100px);
+    /*background-color: rgba(0, 0, 0, 0.1);*/
+    color: #e7e6f4;
+    font-size: clamp(18px, 4.9vw, 32px);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s, background-color 0.3s;
+    background-color: #433d69;
+    visibility: hidden;  /* Commence caché */
+   }
+
+   .btn-play:hover {
+    background-color: rgba(0, 0, 0, 1.0);
+    background-color: #433d69;
+    /*opacity: 1;*/
+    filter: brightness(1.4);
+   }
+   
+   .btn-play.visible {
+      visibility: visible; /* Devient visible une fois l'image chargée */
+   }
+
+</style>
+</head>
+<body>
+
+<h2 class="titre-2">FUMEE OMNISCIENTE, MIRAGE ONIRIQUE</h2>
+	
+<h1 class="titre-1">Appuyer sur l'îcone pour faire basculer l'audio entre Salle 1 et Salle 2</h1>
+
+<div class="video-container" style="
+    max-height: 97vh;">
+    <div class="cover" id="cover">
+        <img src="https://www.dropbox.com/scl/fi/tjyl8sp1x4vylslec80l2/Capture-d-ecran-le-2025-03-15-20.32.38-2.jpg?rlkey=rlz3oio1ic79yagjsbqcouy3z&st=imua5657&raw=1" alt="Cover" id="coverImage" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;">
+        <button id="btnPlayCover" class="btn-play">▶</button>
+    </div>
+   <iframe id="video" 
+      src="https://www.youtube.com/embed/fm00cFcoJM8?enablejsapi=1&modestbranding=1&rel=0&showinfo=0" 
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      playsinline>
+   </iframe>
+
+   
+   <button id="btnBascule" class="btn-video btn-salle2">
+      <div class="btn-section left"><i class="fa-solid fa-volume-xmark"></i></div>
+      <div class="btn-section right"><i class="fa-solid fa-volume-high"></i></div>
+   </button>
+   
+</div>
+
+<h4 class="titre-4">Advenant une désynchronisation entre l’audio et la vidéo, vous pouvez appuyer sur l’icône de bascule audio, sinon mettre la vidéo sur pause brièvement et cela devrait régler le problème. Malgré tout, sur certains navigateurs web, il peut arriver que les problèmes de synchronisation persistent. Si c’est votre cas, vous pouvez cliquer sur <a href="https://youtu.be/3uKC271IF_A" target="_blank">ce lien</a> pour écouter la vidéo sans l’audio interactif.</h4>
+
+<h3 class="titre-3">
+    <strong>Félix-Antoine Coutu</strong> : performance, conception instruments et électronique<br>
+    <strong>Jean-Philippe Jullin</strong> : programmation système interactif sonore<br>
+    <strong>Maxime Brillon</strong> : conception vidéo<br>
+    <strong>Marie-Ève Groulx</strong> : conseillère artistique<br>
+    <strong>Anthony Piazza</strong> : captation, montage vidéo<br>
+    <strong>Gaspard Philippe</strong> : sonorisation et prise de son<br>
+    <strong>Krystina Marcoux</strong> : Coach batterie et percussion<br>
+</h3>
+
+<audio id="audioSalle1" loop>
+   <source src="https://www.dropbox.com/scl/fi/ur8dl9pxqmyqqcgq63a2l/FOMO_Audio_Perfo-res-Bain-Mathieu_DRUM.mp3?rlkey=oendf779ij0ijz57i5z65vb8h&st=wya35hdc&raw=1" type="audio/mp3">
+</audio>
+
+<audio id="audioSalle2" loop>
+   <source src="https://www.dropbox.com/scl/fi/vxsx4wc0ojrao15vsi3rd/FOMO_Audio_Perfo-res-Bain-Mathieu_INSTALL.mp3?rlkey=yuieg0gk2a5t0b6kquxjgoav4&st=15anchfs&raw=1" type="audio/mp3">
+</audio>
+
+<div id="orientation-warning" style="
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  color: white;
+  font-size: 3.5vw;
+  text-align: center;
+  padding-top: 40%;
+  z-index: 1000;">
+  Veuillez tourner votre appareil en mode paysage.
+</div>
+ 
+<script>
+
+    var audioSalle1 = document.getElementById("audioSalle1");
+    var audioSalle2 = document.getElementById("audioSalle2");
+    var btnBascule = document.getElementById("btnBascule");
+    var player;
+    var audioActif = audioSalle2;
+    var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    let isAndroid = /Android/i.test(navigator.userAgent);
+  
+    let lastVideoTime = 0;
+    let syncCalled = false;
+    let offsetMs = 450;
+    let offsetBoutonMs = 450;
+    let offsetReadyMs = 250;
+
+    if (isSafari) {
+    	offsetMs += 300;
+    	offsetBoutonMs += 200;
+    	offsetReadyMs += 200;
+    } else if (isAndroid) {
+    	offsetMs += 300;  // Ajuste selon le besoin
+    	offsetBoutonMs += 200;
+    	offsetReadyMs += 200;
+    }
+
+    btnBascule.classList.add("btn-salle2");
+    
+    audioSalle1.pause(); // Empêcher l'auto-play
+    audioSalle2.pause();
+
+   
+    /////////////////////// INITIALISATION ///////////////////////
+
+    document.getElementById("coverImage").onload = function() {
+   	    document.getElementById("video").style.visibility = "visible";
+        document.getElementById("btnBascule").classList.add("visible");  // Ajoute la classe visible au bouton bascule
+        document.getElementById("btnPlayCover").classList.add("visible");  // Ajoute la classe visible au bouton play
+    };
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        const coverImage = document.querySelector(".cover img");
+        const texts = document.querySelectorAll(".titre-1, .titre-2, .titre-3, .titre-4");
+
+        coverImage.addEventListener("load", function() {
+            texts.forEach(text => {
+                text.classList.add("visible");
+            });
+        });
+    });
+    
+    document.getElementById("btnPlayCover").addEventListener("click", function() {
+        player.playVideo(); // Démarre la vidéo
+        setTimeout(() => {
+            document.getElementById("cover").style.display = "none"; // Cache l'image
+        }, 200);
+        document.addEventListener("click", function enableAudio() {
+    	    audioSalle1.play().catch(e => console.log("Audio bloqué:", e));
+    	    audioSalle2.play().catch(e => console.log("Audio bloqué:", e));
+	        setTimeout(function() {
+		        catchWhenReady(audioActif, function() {
+                    var videoTime = player.getCurrentTime();
+		            var adjustedVideoTime = (videoTime * 1000 + offsetReadyMs) / 1000;
+                    setTimeout(() => {
+                        audioSalle1.currentTime = adjustedVideoTime;
+                        audioSalle2.currentTime = adjustedVideoTime;
+                    }, 200);
+		        });
+	        }, 2500);
+	        document.removeEventListener("click", enableAudio);
+	    });
+    });
+
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('video', {
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+
+    /////////////////////// GESTION PLAYER VIDEO ///////////////////////
+
+    function onPlayerReady(event) {
+        console.log("Le lecteur YouTube est prêt !");
+	monitorYouTubeVolume();
+
+	    /*document.addEventListener("click", function enableAudio() {
+    	    audioSalle1.play().catch(e => console.log("Audio bloqué:", e));
+    	    audioSalle2.play().catch(e => console.log("Audio bloqué:", e));
+	        setTimeout(function() {
+		        catchWhenReady(audioActif, function() {
+                    var videoTime = player.getCurrentTime();
+		            var adjustedVideoTime = (videoTime * 1000 + offsetReadyMs) / 1000;
+                    setTimeout(() => {
+                        audioSalle1.currentTime = adjustedVideoTime;
+                        audioSalle2.currentTime = adjustedVideoTime;
+                    }, 200);
+		        });
+	        }, 2500);
+	        document.removeEventListener("click", enableAudio);
+	    });*/
+    }
+
+    function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !syncCalled) {
+	    syncAudio();
+            syncCalled = true;
+	    //btnBascule.disabled = false; // Activer le bouton 
+		
+	} else if (event.data == YT.PlayerState.PLAYING) {
+	    
+	    // Surveillance du temps pour détecter les sauts de lecture
+	    clearInterval(timeMonitor);
+ 	    timeMonitor = setInterval(() => {
+                let videoTime = player.getCurrentTime();
+	        if (Math.abs(videoTime - lastVideoTime) > 0.2) {  // Si le saut > 1s
+	                syncAudio();  // Resynchronisation
+	        }
+	        lastVideoTime = videoTime;
+	    }, 500);
+		
+        } else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+            stopSync();
+            syncCalled = false;
+		
+	    //btnBascule.disabled = true; // Désactiver le bouton
+	    clearInterval(timeMonitor);
+        }
+    }
+
+
+    /////////////////////// GESTION SYNC AUDIO ///////////////////////
+
+    function catchWhenReady(audioElement, callback, timeout = 5000) {
+	    if (audioElement.readyState >= 3) { // HAVE_FUTURE_DATA
+	        callback();
+	        return;
+	    }
+	
+	    function onReady() {
+	        clearInterval(checkInterval);
+	        clearTimeout(timeoutId);
+	        audioElement.removeEventListener("loadedmetadata", onReady);
+	        audioElement.removeEventListener("canplaythrough", onReady);
+	        callback();
+	    }
+	
+	    // Écouteurs d'événements pour compatibilité maximale
+	    audioElement.addEventListener("loadedmetadata", onReady);
+	    audioElement.addEventListener("canplaythrough", onReady);
+	
+	    // Vérification régulière (utile pour Safari iOS)
+	    let checkInterval = setInterval(() => {
+	        if (audioElement.readyState >= 3) {
+	            onReady();
+	        }
+	    }, 200);
+	
+	    // Timeout de sécurité pour éviter les blocages
+	    let timeoutId = setTimeout(() => {
+	        console.warn("Audio timeout: forcé à continuer");
+	        onReady();
+	    }, timeout);
+    }    
+
+    function syncAudio() {
+      // Crée un buffer avant de récupérer le temps de la vidéo
+      setTimeout(function() {
+        catchWhenReady(audioActif, function() {
+            var videoTime = player.getCurrentTime();
+            var adjustedVideoTime = (videoTime * 1000 + offsetMs) / 1000;
+	   
+            setTimeout(() => {
+		audioSalle1.currentTime = adjustedVideoTime;
+            	audioSalle2.currentTime = adjustedVideoTime;
+	    }, 400);  // Petit délai pour garantir la mise à jour correcte
+
+	    if (audioActif.paused) {
+    		audioActif.play().catch((error) => console.log("Erreur lecture audio:", error));
+	    }
+
+	    // Toujours arrêter l'autre audio
+            if (audioActif === audioSalle1) {
+            	audioSalle2.pause();
+            } else {
+                audioSalle1.pause();
+            }
+        });
+	
+      }, 600);  // Le buffer avant de récupérer le temps vidéo
+    }
+
+    function stopSync() {
+        audioSalle1.pause();
+        audioSalle2.pause();
+        setTimeout(function() {
+            catchWhenReady(audioActif, function() {
+                var videoTime = player.getCurrentTime();
+                var adjustedVideoTime = (videoTime * 1000 + offsetMs) / 1000;
+                setTimeout(() => {
+                    audioSalle1.currentTime = adjustedVideoTime;
+                    audioSalle2.currentTime = adjustedVideoTime;
+                }, 400);
+            });
+        }, 400);  // Le buffer avant de récupérer le temps vidéo
+    }
+
+    function syncAudioBouton() {
+      setTimeout(function() {
+        catchWhenReady(audioActif, function() {
+            var videoTime = player.getCurrentTime();
+            var adjustedVideoTime = (videoTime * 1000 + offsetMs) / 1000;
+            
+            setTimeout(() => {
+    		audioSalle1.currentTime = adjustedVideoTime;
+                audioSalle2.currentTime = adjustedVideoTime;
+	    }, 400);  // Petit délai pour garantir la mise à jour correcte
+
+	    if (audioActif.paused) {
+    		audioActif.play().catch((error) => console.log("Erreur lecture audio:", error));
+            }
+
+	    // Toujours arrêter l'autre audio
+            if (audioActif === audioSalle1) {
+            	audioSalle2.pause();
+            } else {
+                audioSalle1.pause();
+            }
+        });
+      }, 400);  // Le buffer avant de récupérer le temps vidéo
+    }
+
+
+    /////////////////////// GESTION DU VOLUME AUDIO ///////////////////////
+
+    // Écoute les changements de volume et mute sur la vidéo YouTube
+    function monitorYouTubeVolume() {
+    	setInterval(() => {
+        	syncAudioVolume();
+        	syncAudioMute();
+    	}, 500); // Vérification toutes les 500ms
+    }
+
+    function syncAudioVolume() {
+    	if (player && audioSalle1 && audioSalle2) {
+        	let videoVolume = player.getVolume() / 100; // YouTube donne le volume en % (0-100), on le convertit en 0-1
+        	audioSalle1.volume = videoVolume;
+        	audioSalle2.volume = videoVolume;
+    	}
+    }
+
+	function syncAudioMute() {
+    	if (player && audioSalle1 && audioSalle2) {
+        	let isMuted = player.isMuted();
+        	audioSalle1.muted = isMuted;
+        	audioSalle2.muted = isMuted;
+    	}
+    }
+    
+
+    /////////////////////// GESTION DU BOUTON BASCULE AUDIO ///////////////////////
+    
+    btnBascule.addEventListener("click", function () {
+    audioActif.pause();
+
+    if (audioActif === audioSalle1) {
+        audioActif = audioSalle2;
+        btnBascule.classList.remove("btn-salle1");
+        btnBascule.classList.add("btn-salle2");
+        btnBascule.children[0].innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+        btnBascule.children[1].innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+    } else {
+        audioActif = audioSalle1;
+        btnBascule.classList.remove("btn-salle2");
+        btnBascule.classList.add("btn-salle1");
+        btnBascule.children[0].innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+        btnBascule.children[1].innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+    }
+
+    if (player.getPlayerState() == YT.PlayerState.PLAYING) {
+        syncAudioBouton();
+    } else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+        stopSync();
+    }
+});
+
+
+    /////////////////////// GESTION APPRAREILS MOBILES ///////////////////////
+
+    if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+	    function checkOrientation() {
+	    	if (window.innerHeight > window.innerWidth) {
+	            document.getElementById("orientation-warning").style.display = "block";
+		    setTimeout(() => {
+	                audioSalle1.pause();
+	                audioSalle2.pause();
+	            }, 800); // Petit délai avant d’arrêter l’audio (ajustable si nécessaire)
+		    player.pauseVideo();
+	    	} else {
+	            document.getElementById("orientation-warning").style.display = "none";
+		    if (player && player.getPlayerState && player.getPlayerState() === YT.PlayerState.PLAYING) {
+			audioActif.pause();
+			syncAudio();
+		    }
+	    	}
+	    }
+	    window.addEventListener("resize", checkOrientation);  
+	    window.addEventListener("load", checkOrientation);
+    	    window.addEventListener("orientationchange", checkOrientation);
+    } 
+
+
+    /////////////////////// AUTRE ///////////////////////
+
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    
+</script>
+</body>
+</html>
