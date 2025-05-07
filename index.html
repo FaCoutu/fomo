@@ -31,7 +31,7 @@
    /* TEXTES */
 
    h1 {
-      font-size: clamp(8px, 2.3vw, 24px); /* min 16px, idéal 2.3vw, max 48px */
+      font-size: clamp(10px, 1.2vw, 18px); /* min 16px, idéal 2.3vw, max 48px */
       font-weight: normal;
       text-align: center; /* Centre le texte */
       color: #433d69;
@@ -41,14 +41,6 @@
       white-space: nowrap; /* Empêche le retour à la ligne */
       max-width: 100%; /* Assure que le texte occupe toute la largeur */
       /*overflow: hidden;*/
-   }
-
-   .titrer-1.visible {
-      visibility: hidden; /* Devient visible une fois l'image chargée */
-   }
-
-   .titre-1 {
-       margin-bottom: 4px;
    }
 
    h2 {
@@ -64,15 +56,10 @@
       max-width: 100%; /* Assure que le texte occupe toute la largeur */
       /*overflow: hidden;*/
    }
-
-   .titre-2 {
-       margin-bottom: 40px;
-       margin-top: 40px;
-   }
    
    h3 {
-      font-size: 1.2vw;
-      font-style: italic;
+      font-size: clamp(10px, 1.2vw, 18px);
+      font-style: normal;
       font-weight: normal;
       text-align: left;
       color: #433d69;
@@ -82,14 +69,9 @@
       max-width: 100%; /* Assure que le texte occupe toute la largeur */
       /*overflow: hidden;*/
    }
-
-   .titre-3 {
-       margin-top: 200px;
-       margin-bottom: 40px;
-   }
    
    h4 {
-      font-size: 1.2vw;
+      font-size: clamp(10px, 1.2vw, 18px);
       font-style: normal;
       font-weight: normal;
       text-align: justify;
@@ -100,18 +82,38 @@
       max-width: 100%; /* Assure que le texte occupe toute la largeur */
       /*overflow: hidden;*/
    }
+   
 
-   .titre-4 {
-       margin-top: 40px;
-       margin-bottom: 00px;
+   .titre-1 {
+       margin-bottom: 4px;
    }
    
-   .titre-1, .titre-2, .titre-3, .titre-4 {
+   .titre-2 {
+       margin-bottom: 40px;
+       margin-top: 40px;
+   }
+   
+   .titre-3 {
+       margin-top: 100px;
+       margin-bottom: 60px;
+   }
+
+   .titre-4 {
+       margin-top: 4px;
+       margin-bottom: 100px;
+   }
+   
+   .titre-5 {
+       margin-top: 0px;
+       margin-bottom: 40px;
+   }
+   
+   .titre-1, .titre-2, .titre-3, .titre-4, .titre-5 {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;    
    }
    
-   .titre-1.visible, .titre-2.visible, .titre-3.visible, .titre-4.visible {
+   .titre-1.visible, .titre-2.visible, .titre-3.visible, .titre-4.visible, .titre-5.visible {
     opacity: 1;
    }
 
@@ -139,6 +141,8 @@
    #video {
         visibility: hidden;
     }
+    
+    /* IMAGES */
 
    .cover {
         position: absolute;
@@ -158,6 +162,49 @@
         height: 100%;
         object-fit: cover;
         cursor: pointer;
+    }
+    
+    .gallery {
+      display: grid;
+      gap: 0.5em;
+    }
+
+    /* Rangée 1 : 3 colonnes */
+    .row-1 {
+      grid-template-columns: repeat(3, 1fr);
+      margin-bottom: 0.5em;
+    }
+
+    /* Rangée 2 : 4 colonnes */
+    .row-2 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 768px) {
+      .row-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    a {
+      color: #997737; /* couleur par défaut */
+      /*text-decoration: none; retire le soulignement (facultatif) */
+    }
+    
+    a:hover {
+      color: #ff6600; /* couleur quand la souris est dessus */
+    }
+    
+    a:visited {
+      color: #433d69; /* couleur du lien déjà cliqué */
     }
     
     /* BOUTONS */
@@ -233,11 +280,11 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: clamp(60px, 13vw, 100px);
-    height: clamp(60px, 13vw, 100px);
+    width: clamp(60px, 13vw, 80px);
+    height: clamp(60px, 13vw, 80px);
     /*background-color: rgba(0, 0, 0, 0.1);*/
     color: #e7e6f4;
-    font-size: clamp(18px, 4.9vw, 32px);
+    font-size: clamp(20px, 6vw, 40px);
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -292,14 +339,38 @@
 <h4 class="titre-4">Si vous rencontrez des problèmes de synchronisation entre l’audio et la vidéo, essayez d'appuyer sur l’icône de bascule audio, sinon de mettre la vidéo sur pause brièvement. Si les problèmes persistent, écoutez la vidéo <a href="https://youtu.be/Rig_XyVSfN0" target="_blank">ici</a>.
 </h4>
 
+<h4 class="titre-5"><i>Fumée Omnisciente, Mirage Onirique</i> est une œuvre hybride alliant performance audiovisuelle et installation cinétique. Son concept est inspiré du syndrome de la peur de rater quelque chose (Fear Of Missing Out, F.O.M.O.). À travers deux espaces-temps, on y explore les rapports de force de notre société et remet en question nos moyens de communication.<br>
+    <br>
+    L’action de la performance se déroule simultanément dans deux salles distinctes et isolées l’une de l’autre. Dans la première, on assiste à une performance solo pour batterie alors que dans la seconde se trouve une installation audiovisuelle cinétique composée d’instruments à moteurs, contrôlés par la batterie via des capteurs installés sur l’instrument. Dans cette seconde salle, les spectateur.rice.s ont un accès rapproché aux instruments pour découvrir leurs mécanismes et voir leurs moteurs bouger. Tout au long de la représentation, le public est appelé à déambuler librement entre les deux pièces et à devoir constamment choisir à quel volet de la performance il assiste. Ce faisant, il doit nécessairement rater la partie de l’action qui se déroule ailleurs.
+
+</h4>
+
+<div class="gallery row-1">
+        <img src="https://www.dropbox.com/scl/fi/dkmonjtawsnozlrbm75e9/clocher1.jpg?rlkey=gd04r9bh6b94etlyn2zn051st&st=6v54pqa8&raw=1" alt="">
+        <img src="https://www.dropbox.com/scl/fi/byx62whuqww91r11klbbk/drum-bgt-molles.jpg?rlkey=wck9iovlc7ljjne7ju5q7zvjq&st=dlftwv3l&raw=1" alt="">
+        <img src="https://www.dropbox.com/scl/fi/8b2ybj6bbjmfi3mtxzzgl/fut-projo.jpg?rlkey=niv4s1vozqopjyb0vegwm5fqx&st=ey0q4h31&raw=1" alt="">
+    </div>
+    
+    <div class="gallery row-2">
+        <img src="https://www.dropbox.com/scl/fi/tsia0enudzhzo4bn0wtar/install-zoom-out.jpg?rlkey=pheay1jvu7tbj42243cqdj4q6&st=kbf9dax0&raw=1" alt="">
+        <img src="https://www.dropbox.com/scl/fi/o8izhgii03ozn3dx51blr/mur-projo.jpg?rlkey=3b8ziu4c0pvfg38i7nxy90u6q&st=8hguudoi&raw=1" alt="">
+        <img src="https://www.dropbox.com/scl/fi/ltxqwscpn0antdnxqy23i/drum4.jpg?rlkey=4wjj1ak8xh1jnw1pf3y3x76b0&st=gxpk156x&raw=1" alt="">
+        <img src="https://www.dropbox.com/scl/fi/y1eaq33wpse92ufq05xjy/Vielle.jpg?rlkey=zyw2fc2zt731272mjgbgccwiw&st=9zkgn7x2&raw=1" alt="">
+    </div>
+
 <h3 class="titre-3">
-    <strong>Félix-Antoine Coutu</strong> : performance, conception instruments et électronique<br>
+    ÉQUIPE DE CRÉATION<br>
+    <br>
+    <i><strong>Félix-Antoine Coutu</strong> : performance, conception instruments et électronique<br>
     <strong>Jean-Philippe Jullin</strong> : programmation système interactif sonore<br>
     <strong>Maxime Brillon</strong> : conception vidéo<br>
     <strong>Marie-Ève Groulx</strong> : conseillère artistique<br>
     <strong>Anthony Piazza</strong> : captation, montage vidéo<br>
     <strong>Gaspard Philippe</strong> : sonorisation et prise de son<br>
-    <strong>Krystina Marcoux</strong> : coach batterie et percussion<br>
+    <strong>Krystina Marcoux</strong> : coach batterie et percussion<br></i>
+    <br>
+    <br>
+    <a href="https://felixantoinecoutu.com" target="_blank">felixantoinecoutu.com</a>
 </h3>
 
 <audio id="audioSalle1" controls>
@@ -368,7 +439,7 @@
     
     document.addEventListener("DOMContentLoaded", function() {
         const coverImage = document.querySelector(".cover img");
-        const texts = document.querySelectorAll(".titre-1, .titre-2, .titre-3, .titre-4");
+        const texts = document.querySelectorAll(".titre-1, .titre-2, .titre-3, .titre-4, .titre-5");
 
         coverImage.addEventListener("load", function() {
             texts.forEach(text => {
